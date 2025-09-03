@@ -1,0 +1,32 @@
+# Ignore les fichiers de journalisation (logs) qui peuvent contenir des informations sensibles.
+*.log
+# Ignore le cache de bytecode généré par Python pour améliorer les performances.
+__pycache__/
+# Ignore la base de données SQLite utilisée pour le développement local.
+db.sqlite3
+# Ignore le dossier contenant les fichiers téléversés par les utilisateurs (images, documents...).
+mediafiles/
+
+# --- Variables d'environnement ---
+# Ignore le fichier contenant les clés d'API, mots de passe et autres secrets. CRUCIAL pour la sécurité.
+.env
+
+# --- Environnements virtuels ---
+# Ignore les dossiers d'environnement virtuel qui contiennent les dépendances du projet.
+.venv/
+env/
+venv/
+ENV/
+
+# --- Fichiers des IDEs / Éditeurs de code ---
+# Ignore les fichiers de configuration spécifiques à l'éditeur de code (ici, PyCharm et VS Code).
+.idea/
+.vscode/
+
+# --- Système d'exploitation (macOS) ---
+# Ignore le fichier système invisible créé par le Finder de macOS dans les dossiers.
+.DS_Store
+
+# --- Fichiers compilés Python ---
+# Une règle plus générale pour ignorer les fichiers Python compilés (.pyc, .pyo, .pyd).
+*.py[cod]
