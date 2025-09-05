@@ -158,3 +158,16 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+if not DEBUG:
+    # HTTPS settings
+    SESSION_COOKIE_SECURE = True  # Force les cookies de session à être transmis uniquement via HTTPS
+    CSRF_COOKIE_SECURE = True     # Force les cookies CSRF à être transmis uniquement via HTTPS
+    SECURE_SSL_REDIRECT = True    # Redirige automatiquement toutes les requêtes HTTP vers HTTPS
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # Détecte HTTPS derrière un proxy
+
+    # HSTS settings (HTTP Strict Transport Security)
+    SECURE_HSTS_SECONDS = 31536000        # Durée (1 an) pendant laquelle le navigateur doit utiliser HTTPS uniquement
+    SECURE_HSTS_PRELOAD = True            # Permet l'inclusion dans la liste de préchargement HSTS des navigateurs
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True # Applique la politique HSTS à tous les sous-domaines
