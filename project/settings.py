@@ -76,12 +76,41 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            # Indique à Django quel "moteur" utiliser. Chaque SGBD (MySQL, PostgreSQL, etc.) a le sien.
+            "ENGINE": "django.db.backends.mysql",
+
+            # Le nom exact de la base de données que nous avons créée dans MySQL.
+            "NAME": "docvps",
+
+            # L'utilisateur que nous avons créé dans MySQL et qui a les droits sur cette base de données.
+            "USER": "docvps_user",
+
+            # Le mot de passe de l'utilisateur. Ici, on le charge depuis une variable d'environnement pour ne pas l'écrire en clair (bonne pratique de sécurité).
+            "PASSWORD": env("DB_PASSWORD"),
+
+            # L'adresse du serveur de base de données. Comme MySQL tourne sur le même VPS que Django, on utilise "localhost".
+            "HOST": "localhost",
+
+            # Le port de communication de MySQL. 3306 est le port par défaut.
+            "PORT": "3306",
+
+            # Permet de passer des options spécifiques à MySQL. "STRICT_TRANS_TABLES" est une bonne pratique qui rend MySQL plus strict.
+            "OPTIONS": {
+                "sql_mode": "STRICT_TRANS_TABLES",
+            },
+        }
+    }
+
 
 
 # Password validation
